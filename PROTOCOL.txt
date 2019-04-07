@@ -1,0 +1,34 @@
+1. INSTRUKCJA KOMUNIKACJI SERWER-KLIENT
+
+   KLIENT
+
+	- plik wykorzystuje dwie identyfikowane kolejki komunikatów
+	- int id = msgget(1000,0777|IPC_CREAT);
+		* uniwersalna kolejka przesyłająca wszystkie informacje użytkownik->serwer
+		* każda funkcja posiada indywidualny 'long typ'
+	- int idk = msgget(msgU.id,0777|IPC_CREAT);
+		* indywidualna kolejka dla każdego użytkownika określona przy pomocy ID
+		* służy do otrzymywania wiadomości od serwera 'chat text[100]'
+		* priorytet wiadomości albo alarm określa 'long typ'
+		* proces potomny w celu asynchronicznego otrzymywania wiadomości
+
+   SERWER
+	- plik tworzy główny i indywidualne identyfikowane kolejki komunikatów
+	-int id = msgget(1000,0777|IPC_CREAT);
+		* uniwersalna kolejka do otrzymanych poleceń od użytkowniów
+		* konkretna funkcja wywołana odpowiednim oznaczeniem wiadomości 'long typ'
+		* typ = 1 * aktywuje nowego użytkownika
+		* typ = 2 * dodaje subskrypcję użytkownikowi
+		* typ = 3 * otrzymanie wiadomości i rozesłanie jej
+		* typ = 4 * blokowanie wiadomości od użytkownika
+		* typ = 6 * usuwa subskrypcję użytkownikowi
+	-int user = msgget(msgS.id,0777|IPC_CREAT);
+		* zmienna kolejka ze zmiennym kluczem identyfikatora 
+		* zapewnia rozesłanie wiadomości do odpowiednich osób
+		* priorytet wiadomości określony poprzez 'long typ' w zakresie 100-110
+		* wszystkie uwagi przesyłane są poprzez 'long typ' = 5
+
+
+	- uniwersalna struktura komunikatu między klient-serwer
+
+	struct msgbuf{        	long typ;	- informacja o funkcji komunikatu		        	char topic;	- rodzaj subskrypcji wiadomości/dodania/usunięcia         	char text[100];	- treść wiadomości        	int id;  	- identyfikacja autora wiadomości         	int priority;	- nadanie priorytetu przesyłanej wiadomości        	char name[10];	- identyfikacja autora wiadomości    	}msgU;

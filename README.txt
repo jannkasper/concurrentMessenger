@@ -1,35 +1,35 @@
-1. INSTRUKCJA KOMPILACJI
-	- uruchomienie Makefile w terminalu
+1. COMPILATION INSTRUCTIONS
+	- Makefile starts in the terminal
 
-2. INSTRUKCJA URUCHOMIENIA
-	- do sprawdzenia działania programu potrzebne 3 terminale [./s ./k ./k ]
-	- w celu uruchomienia serwera wywołanie komendy: ./s
-	- w celu uruchomienia klienta wywołanie komendy: ./k
+2. START-UP INSTRUCTIONS
+	- 3 terminals needed to check the operation of the program [./s ./k ./k]
+	- to run the server, issue the command: ./s
+	- to run the client, issue the command: ./k
 
-3. ZAWARTOŚĆ PLIKU Jan.Kasper.114885_s.c
-	- serwer nie podlega obsłudze przez użytkownika
-	- serwer pracuje na otrzymanych informacjach od klientów
-	- serwer wyświetla wynik wykonanych operacji
-	- pracę serwera możemy zakończyć poprawnie wywołując ENETER
+3. CONTENT OF THE FILE Jan.Kasper.114885_s.c
+	- the server is not subject to user service
+	- the server works on received information from clients
+	- the server displays the result of performed operations
+	- we can finish the work of the server by calling ENETER
 
 
-   ZAWARTOŚĆ PLIKU Jan.Kasper.114885_k.c
-     *logowanie
-	- logowanie za pomocą ID [int] oraz LOGIN [char[10] - tylko litery alfabetu]
-	- blokada logowania po 3 próbach błędów w ID oraz LOGIN 
-	- uruchomienie asynchronicznego odbierania wiadomości za pomocą '1' [inaczej '0']
-	- wywołanie dowolnej funkcji użytkownika poprzez wybranie [int] z zakresu 1-7
-     *funkcja [1][6]
-	- wprowadzanie subskrypcji w formie pojedynczego znaku [char]
-     *funkcja [2] 
-	- w trakcie wysyłania wiadomości określa się subskrypcje [char]
-	- w trakcie wysyłania wiadomości nadaje się priorytet w skali 0-10 [int]
-	- wysyłana wiadomość ma ograniczoną pojemność [char[100]]
-     *funkcja [3]
-	- ponowne wyświetlenie MENU     
-     *funkcja [4]
-	- blokowanie użytkownika poprzez wprowadzenie dokładnego jego LOGINU
-     *funkcja [5]
-	- wyświetlenie synchroniczne wiadomości zgodnie z priorytetem nadania
-     *funkcja [7]
-	- uruchomione procesy oraz potok użytkownika usuwany przy zamykaniu systemu
+   CONTENTS OF THE FILE Jan.Kasper.114885_k.c
+     * login
+	- login using ID [int] and LOGIN [char [10] - only alphabet letters]
+	- login block after 3 error attempts in ID and LOGIN
+	- start asynchronous receiving messages with '1' [otherwise '0']
+	- calling any user function by selecting [int] from the 1-7 range
+     	* function [1] [6]
+	- subscription in the form of a single character [char]
+     * function [2]
+	- subscribers [char] are defined when sending messages
+	- when sending a message, priority is given on a 0-10 scale [int]
+	- message sent has limited capacity [char [100]]
+     * function [3]
+	- displaying the MENU again
+     * function [4]
+	- blocking the user by entering his exact LOGIN
+     * function [5]
+	- displaying synchronous messages according to the priority of sending
+     * function [7]
+	- running processes and the user's pipe removed when shutting down the system
